@@ -1,0 +1,28 @@
+classvalues[classnumber][0]=classvalues[classnumber][0]+value0;
+classvalues[classnumber][1]=classvalues[classnumber][1]+value1;
+classvalues[classnumber][2]=classvalues[classnumber][2]+value2;
+
+std::cout << classes[classnumber] << ":" << classvalues[classnumber][0] <<" for a weight "<<std::endl;
+std::cout << classes[classnumber] << ":" << classvalues[classnumber][1] <<" for b weight "<< std::endl;
+std::cout << classes[classnumber] << ":" << classvalues[classnumber][2] <<" for c weight "<< std::endl;
+}
+}
+
+for(int tt=0; tt<3; tt++) {
+Matrix matrix;
+std::vector<double> mat;
+for(int ss=0; ss<3; ss++) {
+mat.push_back(classvalues[tt][ss]);
+}
+matrix.addRow(mat);
+SoftmaxClassification softc(matrix);
+softc.apply();
+Matrix matout = softc.getOutput();
+
+std::cout << std::endl;
+std::cout << classes[tt] << ":" << classvalues[tt][0] <<" for 1 weight " << matout.getValue(0, 0) <<std::endl;
+std::cout << classes[tt] << ":" << classvalues[tt][1] <<" for 2 weight " << matout.getValue(1, 0) << std::endl;
+std::cout << classes[tt] << ":" << classvalues[tt][2] <<" for 3 weight " << matout.getValue(2, 0) << std::endl;
+std::cout << std::endl;
+
+}
